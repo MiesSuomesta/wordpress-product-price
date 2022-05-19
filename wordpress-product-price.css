@@ -1,0 +1,38 @@
+
+.saletable {
+	border: 0px;
+}
+.saletabletr {
+	border: 0px;
+}
+.saletabletd {
+	border: 0px;
+}
+
+
+.sale_percent {
+	font-size:0.8em;
+	color:lightgreen;
+}
+.sale_txt {
+	font-size:0.4em;
+	vertical-align: text-top;
+	color:green;
+}
+
+.norm_price_strike {
+	font-size:0.8em;
+	color:red;
+	text-decoration: line-through;
+}
+
+.norm_price {
+	font-size:1.4em;
+	color:darkgreen;
+}
+
+.sale_price {
+	font-size:1.7em;
+	color:green;
+}
+
