@@ -26,7 +26,8 @@ $PRODUCT_PRICE_PLUGIN_CSS  = $PRODUCT_PRICE_PLUGIN_SLUG . '.css';
 function my_css_loader() {
 	global $PRODUCT_PRICE_PLUGIN_CSS;
  	$css_url = plugins_url( $PRODUCT_PRICE_PLUGIN_CSS ,  __FILE__ );
-	wp_enqueue_style( 'style',  $css_url);
+	wp_enqueue_style( 'style1',  $css_url);
+	wp_enqueue_style( 'style2',  'https://fonts.googleapis.com/css2?family=MuseoModerno:wght@600&display=swap');
 }
 
 add_action( 'wp_enqueue_scripts', 'my_css_loader' );
