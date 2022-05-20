@@ -212,7 +212,7 @@ function not_on_sale_decorate($given_info, $given_elementName)
 			<td class="sale_price_td" rowspan="2">'. $sale_price_html .'</td>
 			<td class="sale_percent_td">' . $sale_percent_html .'&nbsp;'. $sale_banner_html . '</td>
 		</tr>
-		<tr class="saletabletr" ><td class="price_td">'. $price_html .'</td></tr>
+		<tr class="saletabletr" ><td class="price_td">Norm. '. $price_html .'</td></tr>
 		<tr class="saletabletrfooter" ><td class="footer_td" colspan="3">'. $footer_html .'</td></tr>
 		</table>';
 	
