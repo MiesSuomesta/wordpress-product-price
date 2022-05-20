@@ -7,52 +7,93 @@
 	border: 0px;
 }
 
-.header_txt {
+.header_td {
+	border: 0px;
+	font-family: MuseoModerno;
+	font-size:0.48em;
+	color:lightgreen;
+	text-align: center;
+}
+
+.footer_td {
+	border: 0px;
 	font-family: MuseoModerno;
 	font-size:0.2em;
-	color:lightgreen;
+	text-shadow: 2px 2px 5px black;
+	text-align: center;
+}
+
+/* */
+.price_td {
+	border: 0px;
+	text-align: left;
 	text-shadow: 2px 2px 5px black;
 }
 
-.header_date .footer_date {
+.sale_price_td {
+	border: 0px;
+	text-align: right;
+	
+}
+.sale_percent_td {
+	border: 0px;
+	text-align: right;
 	font-family: MuseoModerno;
-	font-size:0.3em;
-	color:green;
-	text-shadow: 2px 2px 5px black;
+	font-size:0.2em;
 }
 
-.footer_small {
+.product_title {
+	border: 0px;
 	font-family: MuseoModerno;
-	font-size:0.5em;
-	color:darkgreen;
-	text-shadow: 2px 2px 5px black;
+	
 }
 
-.footer_date_small {
+.product_title_add {
+	border: 0px;
 	font-family: MuseoModerno;
-	font-size:0.6em;
-	color:green;
-	text-shadow: 2px 2px 5px black;
 }
-
 
 .sale_percent {
 	font-family: MuseoModerno;
 	font-size:1.5em;
 	color:lightgreen;
-	text-shadow: 2px 2px 5px black;
 }
 
-.sale_txt {
+.sale_banner {
 	font-family: MuseoModerno;
 	font-size:1.55em;
 	color:green;
+}
+
+.sale_price {
+	font-family: Ultra;
+	font-size:1em;
+	color:lightgreen;
+}
+
+.sale_till {
+	font-family: Ultra;
+	font-size:2em;
+	color:lightgreen;
+}
+
+.sale_to_date {
+	font-family: Ultra;
+	font-size:1em;
+	color:lightgreen;
 	text-shadow: 2px 2px 5px black;
+}
+
+.sale_valid {
+	font-family: Ultra;
+	font-size:1em;
+	color:lightgreen;
+	
 }
 
 .norm_price_strike {
 	font-family: Ultra;
-	font-size:0.9em;
+	font-size:0.8em;
 	color:lightgray;
 	text-decoration: line-through;
 	text-shadow: 2px 2px 5px black;
@@ -60,14 +101,8 @@
 
 .norm_price {
 	font-family: Ultra;
-	font-size:0.4em;
-	text-decoration: line-through;
+	font-size:0.35em;
+	color:lightgray;
 	text-shadow: 2px 2px 5px black;
 }
 
-.sale_price {
-	font-family: Ultra;
-	font-size:2em;
-	color:lightgreen;
-	text-shadow: 2px 2px 5px black;
-}
