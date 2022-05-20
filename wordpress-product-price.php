@@ -40,6 +40,7 @@ function get_woo_product_shortcode_atts( $shortcode_name, $atts ) {
 		'currency_space' => null,
 		'html_elem' => null,
 		'hinfo' => null,
+		'hadd' => null,
 		'price_only' => null,
 		'price_type' => null,
 	), $atts, $shortcode_name ); 
@@ -95,6 +96,14 @@ function do_decoration($on_sale, $css_class_for_sale, $css_class_for_normal, $it
 
 function mk_header_html($given_info, $element)
 {
+	if ( empty( $given_info[ 'hadd' ] ) ) { 
+		/* was empty */
+		$product_title_add = "";
+	} else {
+		/* was not empty */
+		$product_title_add = ": " .$given_info['hadd'];
+	}
+
 	if ( empty( $given_info[ 'hinfo' ] ) ) { 
 		/* was empty */
 		$product_title 	= $given_info['product_name'];
@@ -103,7 +112,7 @@ function mk_header_html($given_info, $element)
 		$product_title 	= $given_info['hinfo'];
 	}
 
-	return $product_title;
+	return $product_title . $product_title_add;
 }
 
 function mk_footer_html($given_info, $element)
@@ -331,6 +340,7 @@ function get_woo_product_price_info_shortcode( $atts ) {
 	$sale_price 	= $regular_price;
 	
 	$info = [];
+	$info['hadd']		= $atts['hadd'];
 	$info['hinfo']		= $atts['hinfo'];
 	$info['sale'] 		= $on_sale;
 	$info['regular_price'] 	= $regular_price;
@@ -344,32 +354,35 @@ function get_woo_product_price_info_shortcode( $atts ) {
 	$info['international'] 	= false;
 
 	if ($on_sale) {
+		$sale_banner	 = "";
+		$sale_valid	 = "";
+		$sale_till	 = "";
 		$sale_price 	 = $product->get_sale_price();
 		$sale_percent 	 = (int)(( 100 * ( 1 - ($sale_price / $regular_price) )));
 		$sale_to_obj 	 = $product->get_date_on_sale_to();		
 		
 		
-		if ( strpos($_SERVER['HTTP_HOST'], ".com") > 0 ) {
-			$sale_banner="SALE";
-			$sale_valid="offer valid ";
-			$sale_till="until";
-			$info['sale_to_date_format'] = "m.d.";
-			$info['sale_valid'] = $sale_valid;
-			$info['international'] = true;
-		} else {
-			$sale_banner="ALE";
-			$sale_valid="tarjous voimassa";
-			$sale_till="asti";
-			$info['sale_to_date_format'] = "d.m.";
-			$info['sale_valid'] = $sale_valid;
-			$info['international'] = false;
-		}
 
 		$info['sale_to_date'] = false;
 		if ( $sale_to_obj != null ) {
+
+			if ( strpos($_SERVER['HTTP_HOST'], ".com") > 0 ) {
+				$sale_banner="SALE";
+				$sale_valid="offer valid ";
+				$sale_till="until";
+				$info['sale_to_date_format'] = "m.d.";
+				$info['international'] = true;
+			} else {
+				$sale_banner="ALE";
+				$sale_valid="tarjous voimassa";
+				$sale_till="asti";
+				$info['sale_to_date_format'] = "d.m.";
+				$info['international'] = false;
+			}
 			$info['sale_to_date'] = $sale_to_obj->date($info['sale_to_date_format']);
 		}
 		
+		$info['sale_valid'] 	= $sale_valid;
 		$info['sale_price'] 	= $sale_price;
 		$info['sale_percent'] 	= $sale_percent;
 		$info['sale_banner'] 	= $sale_banner;
