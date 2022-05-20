@@ -197,11 +197,11 @@ function not_on_sale_decorate($given_info, $given_elementName)
 	$sale_banner 	= $given_info['sale_banner'];
 	$sale_till 	= $given_info['sale_till'];
 
-	$price_html 		= do_decoration_single('norm_price_strike',	$regular_price . $currency, 	$given_elementName);
-	$sale_percent_html 	= do_decoration_single('sale_percent',		$sale_percent . '%', 		$given_elementName);
-	$sale_price_html 	= do_decoration_single('sale_price', 		$sale_price . $currency, 	$given_elementName);
-	$sale_banner_html	= do_decoration_single('sale_banner', 		$sale_banner, 			$given_elementName);
-	$sale_till_html		= do_decoration_single('sale_till', 		$sale_till, 			$given_elementName);
+	$price_html 		= do_decoration_single('norm_price_strike',	'Norm. ' . $regular_price . $currency, 	$given_elementName);
+	$sale_percent_html 	= do_decoration_single('sale_percent',		$sale_percent . '%', 			$given_elementName);
+	$sale_price_html 	= do_decoration_single('sale_price', 		$sale_price . $currency, 		$given_elementName);
+	$sale_banner_html	= do_decoration_single('sale_banner', 		$sale_banner, 				$given_elementName);
+	$sale_till_html		= do_decoration_single('sale_till', 		$sale_till, 				$given_elementName);
 
 	$header_html = mk_header_html($given_info, $given_elementName);
 	$footer_html = mk_footer_html($given_info, $given_elementName);
@@ -212,7 +212,7 @@ function not_on_sale_decorate($given_info, $given_elementName)
 			<td class="sale_price_td" rowspan="2">'. $sale_price_html .'</td>
 			<td class="sale_percent_td">' . $sale_percent_html .'&nbsp;'. $sale_banner_html . '</td>
 		</tr>
-		<tr class="saletabletr" ><td class="price_td">Norm. '. $price_html .'</td></tr>
+		<tr class="saletabletr" ><td class="price_td">'. $price_html .'</td></tr>
 		<tr class="saletabletrfooter" ><td class="footer_td" colspan="3">'. $footer_html .'</td></tr>
 		</table>';
 	
