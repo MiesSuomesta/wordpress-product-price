@@ -144,9 +144,9 @@ function mk_footer_html($given_info, $element)
 
 		if ($given_info['international'])
 		{
-			$rv = $sale_valid_html .$bsp. $sale_till_html .$bsp. $sale_to_date_html;
-		} else {
-			$rv = $sale_valid_html .$bsp. $sale_to_date_html .$bsp. $sale_till_html;
+			$rv = $sale_valid_html . $sale_till_html    . $sale_to_date_html;
+		} else {                                             
+			$rv = $sale_valid_html . $sale_to_date_html . $sale_till_html;
 		}
 	}
 
