@@ -148,10 +148,10 @@ function on_sale_decorate($given_info, $given_elementName)
 	$sale_banner 	= $given_info['sale_banner'];
 	$sale_till 	= $given_info['sale_till'];
 
-	$price_html 		= do_decoration($sale, 'sale_txt', 'norm_price', $regular_price . $currency, $given_elementName);
-	$sale_percent_html 	= do_decoration($sale, 'sale_percent', 'sale_percent', $sale_percent . '%', $given_elementName);
-	$sale_price_html 	= do_decoration($sale, 'sale_price', 'sale_price', $sale_price . $currency, $given_elementName);
-	$sale_banner_html	= do_decoration($sale, 'sale_txt', 'sale_txt', $sale_banner, $given_elementName);
+	$price_html 		= do_decoration_single('norm_price_strike',	$regular_price . $currency, $given_elementName);
+	$sale_percent_html 	= do_decoration_single('sale_percent',		$sale_percent . '%', $given_elementName);
+	$sale_price_html 	= do_decoration_single('sale_price', 		$sale_price . $currency, $given_elementName);
+	$sale_banner_html	= do_decoration_single('sale_txt', 		$sale_banner, $given_elementName);
 
 	$header_html = mk_header_html($given_info, $given_elementName);
 	$footer_html = mk_footer_html($given_info, $given_elementName);
@@ -180,10 +180,11 @@ function not_on_sale_decorate($given_info, $given_elementName)
 	$sale_banner 	= $given_info['sale_banner'];
 	$sale_till 	= $given_info['sale_till'];
 
-	$price_html 		= do_decoration($sale, 'sale_txt', 'norm_price', $regular_price . $currency, $given_elementName);
-	$sale_percent_html 	= do_decoration($sale, 'sale_percent', 'sale_percent', $sale_percent . '%', $given_elementName);
-	$sale_price_html 	= do_decoration($sale, 'sale_price', 'sale_price', $sale_price . $currency, $given_elementName);
-	$sale_banner_html	= do_decoration($sale, 'sale_txt', 'sale_txt', $sale_banner, $given_elementName);
+	$price_html 		= do_decoration_single('norm_price',	$regular_price . $currency, $given_elementName);
+/*	$sale_percent_html 	= do_decoration_single('sale_percent',	$sale_percent . '%', $given_elementName);
+	$sale_price_html 	= do_decoration_single('sale_price', 	$sale_price . $currency, $given_elementName);
+	$sale_banner_html	= do_decoration_single('sale_txt', 	$sale_banner, $given_elementName);
+*/
 
 	$header_html = mk_header_html($given_info);
 	$footer_html = mk_footer_html($given_info);
