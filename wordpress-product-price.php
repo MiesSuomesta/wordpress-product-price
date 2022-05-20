@@ -170,8 +170,8 @@ function on_sale_decorate($given_info, $element)
 	$sale_banner_html	= do_decoration_single('sale_banner', 		$sale_banner, 			$element);
 	$sale_till_html		= do_decoration_single('sale_till', 		$sale_till, 			$element);
 
-	$header_html = mk_header_html($given_info, $given_elementName);
-	$footer_html = mk_footer_html($given_info, $given_elementName);
+	$header_html = mk_header_html($given_info, $element);
+	$footer_html = mk_footer_html($given_info, $element);
 
 	$rv = '<table class="saletable">
 		<tr class="saletabletrheader" ><td class="header_td" colspan="3">'. $header_html .'</td></tr>
@@ -186,7 +186,7 @@ function on_sale_decorate($given_info, $element)
 	return $rv;
 }
 
-function not_on_sale_decorate($given_info, $given_elementName)
+function not_on_sale_decorate($given_info, $element)
 {
 	$product	= $given_info['product'];
 	$sale 		= $given_info['sale'];
@@ -197,14 +197,14 @@ function not_on_sale_decorate($given_info, $given_elementName)
 	$sale_banner 	= $given_info['sale_banner'];
 	$sale_till 	= $given_info['sale_till'];
 
-	$price_html 		= do_decoration_single('norm_price_strike',	'Norm. ' . $regular_price . $currency, 	$given_elementName);
-	$sale_percent_html 	= do_decoration_single('sale_percent',		$sale_percent . '%', 			$given_elementName);
-	$sale_price_html 	= do_decoration_single('sale_price', 		$sale_price . $currency, 		$given_elementName);
-	$sale_banner_html	= do_decoration_single('sale_banner', 		$sale_banner, 				$given_elementName);
-	$sale_till_html		= do_decoration_single('sale_till', 		$sale_till, 				$given_elementName);
+	$price_html 		= do_decoration_single('norm_price_strike',	'Norm. ' . $regular_price . $currency, 	$element);
+	$sale_percent_html 	= do_decoration_single('sale_percent',		$sale_percent . '%', 			$element);
+	$sale_price_html 	= do_decoration_single('sale_price', 		$sale_price . $currency, 		$element);
+	$sale_banner_html	= do_decoration_single('sale_banner', 		$sale_banner, 				$element);
+	$sale_till_html		= do_decoration_single('sale_till', 		$sale_till, 				$element);
 
-	$header_html = mk_header_html($given_info, $given_elementName);
-	$footer_html = mk_footer_html($given_info, $given_elementName);
+	$header_html = mk_header_html($given_info, $element);
+	$footer_html = mk_footer_html($given_info, $element);
 
 	$rv = '<table class="saletable">
 		<tr class="saletabletrheader" ><td class="header_td" colspan="3">'. $header_html .'</td></tr>
