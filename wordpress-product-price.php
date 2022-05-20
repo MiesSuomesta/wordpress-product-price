@@ -135,12 +135,12 @@ function mk_footer_html($given_info, $element)
 		$sale_to_date	= $given_info['sale_to_date'];
 		$sale_valid 	= $given_info['sale_valid'];
 		
-		$sale_percent_html 	= do_decoration_single('sale_percent',		$sale_percent . '%', 		$given_elementName);
-		$sale_price_html 	= do_decoration_single('sale_price', 		$sale_price . $currency, 	$given_elementName);
-		$sale_banner_html	= do_decoration_single('sale_banner', 		$sale_banner, 			$given_elementName);
-		$sale_till_html		= do_decoration_single('sale_till', 		$sale_till, 			$given_elementName);
-		$sale_to_date_html	= do_decoration_single('sale_to_date', 		$sale_to_date, 			$given_elementName);
-		$sale_valid_html	= do_decoration_single('sale_valid', 		$sale_valid, 			$given_elementName);
+		$sale_percent_html 	= do_decoration_single('sale_percent',		$sale_percent . '%', 		$element);
+		$sale_price_html 	= do_decoration_single('sale_price', 		$sale_price . $currency, 	$element);
+		$sale_banner_html	= do_decoration_single('sale_banner', 		$sale_banner, 			$element);
+		$sale_till_html		= do_decoration_single('sale_till', 		$sale_till, 			$element);
+		$sale_to_date_html	= do_decoration_single('sale_to_date', 		$sale_to_date, 			$element);
+		$sale_valid_html	= do_decoration_single('sale_valid', 		$sale_valid, 			$element);
 
 		if ($given_info['international'])
 		{
@@ -153,7 +153,7 @@ function mk_footer_html($given_info, $element)
 	return $rv;
 }
 
-function on_sale_decorate($given_info, $given_elementName)
+function on_sale_decorate($given_info, $element)
 {
 	$product	= $given_info['product'];
 	$sale 		= $given_info['sale'];
@@ -164,11 +164,11 @@ function on_sale_decorate($given_info, $given_elementName)
 	$sale_banner 	= $given_info['sale_banner'];
 	$sale_till 	= $given_info['sale_till'];
 
-	$price_html 		= do_decoration_single('norm_price_strike',	$regular_price . $currency, 	$given_elementName);
-	$sale_percent_html 	= do_decoration_single('sale_percent',		$sale_percent . '%', 		$given_elementName);
-	$sale_price_html 	= do_decoration_single('sale_price', 		$sale_price . $currency, 	$given_elementName);
-	$sale_banner_html	= do_decoration_single('sale_banner', 		$sale_banner, 			$given_elementName);
-	$sale_till_html		= do_decoration_single('sale_till', 		$sale_till, 			$given_elementName);
+	$price_html 		= do_decoration_single('norm_price_strike',	$regular_price . $currency, 	$element);
+	$sale_percent_html 	= do_decoration_single('sale_percent',		$sale_percent . '%', 		$element);
+	$sale_price_html 	= do_decoration_single('sale_price', 		$sale_price . $currency, 	$element);
+	$sale_banner_html	= do_decoration_single('sale_banner', 		$sale_banner, 			$element);
+	$sale_till_html		= do_decoration_single('sale_till', 		$sale_till, 			$element);
 
 	$header_html = mk_header_html($given_info, $given_elementName);
 	$footer_html = mk_footer_html($given_info, $given_elementName);
