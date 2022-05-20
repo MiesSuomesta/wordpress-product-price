@@ -4,37 +4,37 @@
 }
 
 .sale_percent {
-	font-family: Ultra;
-	font-size:0.7em;
+	font-family: MuseoModerno;
+	font-size:0.35em;
 	color:lightgreen;
 	text-shadow: 2px 2px 5px black;
 }
 
 .sale_txt {
-	font-family: Ultra;
-	font-size:0.7em;
+	font-family: MuseoModerno;
+	font-size:0.25em;
 	color:green;
 	text-shadow: 2px 2px 5px black;
 }
 
 .norm_price_strike {
-	font-family: MuseoModerno;
+	font-family: Ultra;
 	font-size:0.8em;
-	color:red;
+	color:lightgray;
 	text-decoration: line-through;
 	text-shadow: 2px 2px 5px black;
 }
 
 .norm_price {
-	font-family: MuseoModerno;
-	font-size:1.4em;
+	font-family: Ultra;
+	font-size:0.4em;
 	color:green;
 	text-shadow: 2px 2px 5px black;
 }
 
 .sale_price {
 	font-family: Ultra;
-	font-size:1.7em;
+	font-size:1.0em;
 	color:lightgreen;
 	text-shadow: 2px 2px 5px black;
 }
