@@ -1,2 +1,2 @@
-# wordpress-wordpress-product-price
+# wordpress-product-price
 Shows pricing info of product

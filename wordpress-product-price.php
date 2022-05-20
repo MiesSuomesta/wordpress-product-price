@@ -39,6 +39,7 @@ function get_woo_product_shortcode_atts( $shortcode_name, $atts ) {
 		'currency' => null,
 		'currency_space' => null,
 		'html_elem' => null,
+		'hinfo' => null,
 		'price_only' => null,
 		'price_type' => null,
 	), $atts, $shortcode_name ); 
@@ -67,6 +68,21 @@ function get_currency_from_atts($atts)
 	return $currency . $currency_space;
 }
 
+function do_decoration_single($css_class, $item, $element)
+{
+	
+	if ( $item == false ) 
+	{
+		return "<" . $element . " class='" . $css_class . "'>";
+	}
+	
+	$start_tag = "<" . $element . " class='" . $css_class . "'>";
+	$middle_tag = $item;
+	$end_tag = "</" . $element . ">";
+	return $start_tag . $middle_tag . $end_tag;
+}
+
+
 function do_decoration($on_sale, $css_class_for_sale, $css_class_for_normal, $item, $element)
 {
 	if ($on_sale)
@@ -74,56 +90,125 @@ function do_decoration($on_sale, $css_class_for_sale, $css_class_for_normal, $it
 	else
 		$use_css = $css_class_for_normal;
 	
-	$start_tag = "<" . $element . " class='" . $use_css . "'>";
-	$middle_tag = $item;
-	$end_tag = "</" . $element . ">";
-	
-	return $start_tag . $middle_tag . $end_tag;
+	return do_decoration_single($use_css, $item, $element);
 }
 
-function on_sale_decorate($is_on_sale, $given_price, $given_saleprice, $given_percentage, $given_banner, 
-		  $given_currency, $given_elementName)
+function mk_header_html($given_info, $element)
 {
+	if ( empty( $given_info[ 'hinfo' ] ) ) { 
+		/* was empty */
+		$product_title 	= $given_info['product_name'];
+	} else {
+		/* was not empty */
+		$product_title 	= $given_info['hinfo'];
+	}
 
-	$price = do_decoration($is_on_sale, 'norm_price_strike', 'norm_price', $given_price, $given_elementName);
-	$sale_percentage = do_decoration($is_on_sale, 'sale_percent', 'sale_percent', $given_percentage . '%', $given_elementName);
-	$sale_price = do_decoration($is_on_sale, 'sale_price', 'sale_price', $given_saleprice, $given_elementName);
-	$sale_banner = do_decoration($is_on_sale, 'sale_txt', 'sale_txt', $given_banner, $given_elementName);
+	return $product_title;
+}
+
+function mk_footer_html($given_info, $element)
+{
+	$sale 		= $given_info['sale'];
+	$product	= $given_info['product'];
+	$product_name 	= $given_info['product_name'];
+
+	$rv = "";
+	if ($sale) {
+		$sale_price 	= $given_info['sale_price'];
+		$sale_percent 	= $given_info['sale_percent'];
+		$sale_banner 	= $given_info['sale_banner'];
+		$sale_till 	= $given_info['sale_till'];
+		$sale_to_date	= $given_info['sale_to_date'];
+		$sale_valid 	= $given_info['sale_valid'];
+		
+		$sale_to_date_html 	= do_decoration_single('footer_date_small', $sale_to_date, $element);
+		$sale_valid_html	= do_decoration_single('footer_small', $sale_valid, $element);
+		$sale_till_html 	= do_decoration_single('footer_small', $sale_till, $element);
+		//$bsp 			= do_decoration_single('br_small', false, "br");
+		$bsp = " ";
+		if ($given_info['international'])
+		{
+			$rv = $sale_valid_html .$bsp. $sale_till_html .$bsp. $sale_to_date_html;
+		} else {
+			$rv = $sale_valid_html .$bsp. $sale_to_date_html .$bsp. $sale_till_html;
+		}
+	}
+
+	return $rv;
+}
+
+function on_sale_decorate($given_info, $given_elementName)
+{
+	$product	= $given_info['product'];
+	$sale 		= $given_info['sale'];
+	$regular_price 	= $given_info['regular_price'];
+	$currency 	= $given_info['currency'];
+	$sale_price 	= $given_info['sale_price'];
+	$sale_percent 	= $given_info['sale_percent'];
+	$sale_banner 	= $given_info['sale_banner'];
+	$sale_till 	= $given_info['sale_till'];
+
+	$price_html 		= do_decoration($sale, 'sale_txt', 'norm_price', $regular_price . $currency, $given_elementName);
+	$sale_percent_html 	= do_decoration($sale, 'sale_percent', 'sale_percent', $sale_percent . '%', $given_elementName);
+	$sale_price_html 	= do_decoration($sale, 'sale_price', 'sale_price', $sale_price . $currency, $given_elementName);
+	$sale_banner_html	= do_decoration($sale, 'sale_txt', 'sale_txt', $sale_banner, $given_elementName);
+
+	$header_html = mk_header_html($given_info, $given_elementName);
+	$footer_html = mk_footer_html($given_info, $given_elementName);
 
 	$rv = '<table class="saletable" align="center">
+		<tr class="saletabletrheader" ><td class="saletabletdheader" colspan="3">'. $header_html .'</td></tr>
 		<tr class="saletabletr" >
-			<td class="saletabletd" rowspan="2">'. $sale_price .'</td>
-			<td class="saletabletd">' . $sale_percentage .'&nbsp;'. $sale_banner . '</td>
+			<td class="saletabletd" rowspan="2">'. $sale_price_html .'</td>
+			<td class="saletabletd">' . $sale_percent_html .'&nbsp;'. $sale_banner_html . '</td>
 		</tr>
-		<tr class="saletabletr" >
-			<td  class="saletabletd">'. $price .'</td>
-		</tr>
+		<tr class="saletabletr" ><td  class="saletabletd">'. $price_html .'</td></tr>
+		<tr class="saletabletrfooter" ><td class="saletabletdfooter" colspan="3">'. $footer_html .'</td></tr>
 		</table>';
 	
 	return $rv;
 }
 
-function not_on_sale_decorate($is_on_sale, $given_price, $given_saleprice, $given_percentage, $given_banner, 
-		  $given_currency, $given_elementName)
+function not_on_sale_decorate($given_info, $given_elementName)
 {
+	$product	= $given_info['product'];
+	$sale 		= $given_info['sale'];
+	$regular_price 	= $given_info['regular_price'];
+	$currency 	= $given_info['currency'];
+	$sale_price 	= $given_info['sale_price'];
+	$sale_percent 	= $given_info['sale_percent'];
+	$sale_banner 	= $given_info['sale_banner'];
+	$sale_till 	= $given_info['sale_till'];
 
-	$price = do_decoration($is_on_sale, 'sale_txt', 'norm_price', $given_price, $given_elementName);
-	
-	$rv = '<table align="center"><tr><td>' . $price . '</td></tr></table>';
-	
+	$price_html 		= do_decoration($sale, 'sale_txt', 'norm_price', $regular_price . $currency, $given_elementName);
+	$sale_percent_html 	= do_decoration($sale, 'sale_percent', 'sale_percent', $sale_percent . '%', $given_elementName);
+	$sale_price_html 	= do_decoration($sale, 'sale_price', 'sale_price', $sale_price . $currency, $given_elementName);
+	$sale_banner_html	= do_decoration($sale, 'sale_txt', 'sale_txt', $sale_banner, $given_elementName);
+
+	$header_html = mk_header_html($given_info);
+	$footer_html = mk_footer_html($given_info);
+
+	$rv = '<table class="saletable" align="center">
+		<tr class="saletabletrheader" >
+			<td class="saletabletdheader" colspan="3">'. $header_html .'</td>
+		</tr>
+		<tr class="saletabletr" >
+			<td  class="saletabletd">'. $price_html .'</td>
+		</tr>
+		<tr class="saletabletrfooter" >
+			<td class="saletabletdfooter" colspan="3">'. $footer_html .'</td>
+		</tr>
+		</table>';
 	return $rv;
 }
 
 
-function decorate($is_on_sale, $given_price, $given_saleprice, $given_percentage, $given_banner, 
-		  $given_currency, $given_elementName) {
-
-	if ($is_on_sale) {
-		return on_sale_decorate($is_on_sale, $given_price, $given_saleprice, $given_percentage, $given_banner, 
-		  $given_currency, $given_elementName);
+function decorate($given_info, $given_elementName)
+{
+	if ($given_info['sale']) {
+		return on_sale_decorate($given_info, $given_elementName);
 	} else {
-		return not_on_sale_decorate($is_on_sale, $given_price, $given_saleprice, $given_percentage, $given_banner, 
-		  $given_currency, $given_elementName);
+		return not_on_sale_decorate($given_info, $given_elementName);
 	}
 }
 
@@ -148,6 +233,29 @@ function get_woo_product_sale_banner_shortcode( $atts ) {
 	
 	return "";
 }
+
+function get_woo_product_sale_date_info( $atts ) { 
+	 
+	$atts = get_woo_product_shortcode_atts( 'get_product_sale_date_end', $atts );
+	$product = wc_get_product( $atts['id'] ); 
+
+	if ( ! $product ) { 
+		return ''; 
+	} 
+	
+	if ( strpos($_SERVER['HTTP_HOST'], ".com") > 0 ) {
+		$SALE_BANNER="until";
+	} else {
+		$SALE_BANNER="asti";
+	}
+	
+	if ($product -> is_on_sale()) {
+		return $SALE_BANNER;
+	}
+	
+	return "";
+}
+
 
 function get_woo_product_sale_price_shortcode( $atts ) { 
 	 
@@ -210,22 +318,69 @@ function get_woo_product_sale_percent_shortcode( $atts ) {
 
 function get_woo_product_price_info_shortcode( $atts ) { 
 
-	$atts = get_woo_product_shortcode_atts( 'get_product_price_info', $atts );
-	/* Get all info .....*/
-	$regular_price 		= get_woo_product_regular_price_shortcode( $atts );
-	$sale_price 		= get_woo_product_sale_price_shortcode( $atts );
-	$sale_percentage 	= get_woo_product_sale_percent_shortcode( $atts );
-	$sale_banner 		= get_woo_product_sale_banner_shortcode( $atts );
-	$currency 		= get_currency_from_atts($atts);
 
+	$atts = get_woo_product_shortcode_atts( 'get_product_price_info', $atts );
+	$currency = get_currency_from_atts($atts);
 
 	$product = wc_get_product( $atts['id'] ); 
 
-	$on_sale = $product -> is_on_sale();
+	/* Get sale price & percentage */
+	$regular_price	= $product->get_regular_price();
+	$on_sale 	= $product->is_on_sale();
+	$sale_price 	= $regular_price;
 	
-		  
-	$html = decorate($on_sale, $regular_price, $sale_price, $sale_percentage, $sale_banner,
-					$currency, 'span');
+	$info = [];
+	$info['hinfo']		= $atts['hinfo'];
+	$info['sale'] 		= $on_sale;
+	$info['regular_price'] 	= $regular_price;
+	$info['currency'] 	= $currency;
+	$info['sale_price'] 	= "";
+	$info['sale_percent'] 	= "";
+	$info['sale_banner'] 	= "";
+	$info['sale_till'] 	= "";
+	$info['product_name'] 	= $product->get_name();
+	$info['product'] 	= $product;
+	$info['international'] 	= false;
+
+	if ($on_sale) {
+		$sale_price 	 = $product->get_sale_price();
+		$sale_percent 	 = (int)(( 100 * ( 1 - ($sale_price / $regular_price) )));
+		$sale_to_obj 	 = $product->get_date_on_sale_to();		
+		
+		
+		if ( strpos($_SERVER['HTTP_HOST'], ".com") > 0 ) {
+			$sale_banner="SALE";
+			$sale_valid="offer valid ";
+			$sale_till="until";
+			$info['sale_to_date_format'] = "m.d.";
+			$info['sale_valid'] = $sale_valid;
+			$info['international'] = true;
+		} else {
+			$sale_banner="ALE";
+			$sale_valid="tarjous voimassa";
+			$sale_till="asti";
+			$info['sale_to_date_format'] = "d.m.";
+			$info['sale_valid'] = $sale_valid;
+			$info['international'] = false;
+		}
+
+		$info['sale_to_date'] = false;
+		if ( $sale_to_obj != null ) {
+			$info['sale_to_date'] = $sale_to_obj->date($info['sale_to_date_format']);
+		}
+		
+		$info['sale_price'] 	= $sale_price;
+		$info['sale_percent'] 	= $sale_percent;
+		$info['sale_banner'] 	= $sale_banner;
+		$info['sale_till'] 	= $sale_till;
+
+	}
+
+/*	print("<pre>");
+	print_r($info);
+	print("</pre>");
+*/		  
+	$html = decorate($info, 'span');
 
 	return $html;
 }
@@ -237,6 +392,28 @@ add_shortcode( 'get_product_sale_price', 	 'get_woo_product_sale_price_shortcode
 add_shortcode( 'get_product_sale_percent',	 'get_woo_product_sale_percent_shortcode'  ); 
 add_shortcode( 'get_product_sale_banner',	 'get_woo_product_sale_banner_shortcode'  ); 
 add_shortcode( 'get_product_price_info',	 'get_woo_product_price_info_shortcode'  ); 
+
+/*
+vuoden
+[get_product_price_info id="7323"]
+[get_product_price_info id="7324"]
+[get_product_price_info id="7327"]
+[get_product_price_info id="7328"]
+
+[get_product_price_info id="7329"]
+[get_product_price_info id="7330"]
+[get_product_price_info id="7331"]
+
+5vuoden
+[get_product_price_info id="7333"]
+[get_product_price_info id="7334"]
+[get_product_price_info id="7335"]
+[get_product_price_info id="7336"]
+[get_product_price_info id="7337"]
+[get_product_price_info id="7338"]
+[get_product_price_info id="7339"]
+*/
+
 
 
 //add_action( 'wp', 'update_hourly_post_type_update_info');

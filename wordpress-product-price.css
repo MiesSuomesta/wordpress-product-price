@@ -3,23 +3,56 @@
 	border: 0px;
 }
 
+.saletabletrheader .saletabletrfooter .saletabletdheader .saletabletdfooter {
+	border: 0px;
+}
+
+.header_txt {
+	font-family: MuseoModerno;
+	font-size:0.2em;
+	color:lightgreen;
+	text-shadow: 2px 2px 5px black;
+}
+
+.header_date .footer_date {
+	font-family: MuseoModerno;
+	font-size:0.3em;
+	color:green;
+	text-shadow: 2px 2px 5px black;
+}
+
+.footer_small {
+	font-family: MuseoModerno;
+	font-size:0.5em;
+	color:darkgreen;
+	text-shadow: 2px 2px 5px black;
+}
+
+.footer_date_small {
+	font-family: MuseoModerno;
+	font-size:0.6em;
+	color:green;
+	text-shadow: 2px 2px 5px black;
+}
+
+
 .sale_percent {
 	font-family: MuseoModerno;
-	font-size:0.35em;
+	font-size:1.5em;
 	color:lightgreen;
 	text-shadow: 2px 2px 5px black;
 }
 
 .sale_txt {
 	font-family: MuseoModerno;
-	font-size:0.25em;
+	font-size:1.55em;
 	color:green;
 	text-shadow: 2px 2px 5px black;
 }
 
 .norm_price_strike {
 	font-family: Ultra;
-	font-size:0.8em;
+	font-size:0.9em;
 	color:lightgray;
 	text-decoration: line-through;
 	text-shadow: 2px 2px 5px black;
@@ -34,7 +67,7 @@
 
 .sale_price {
 	font-family: Ultra;
-	font-size:1.0em;
+	font-size:2em;
 	color:lightgreen;
 	text-shadow: 2px 2px 5px black;
 }
