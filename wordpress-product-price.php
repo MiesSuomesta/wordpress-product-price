@@ -419,29 +419,6 @@ add_shortcode( 'get_product_sale_percent',	 'get_woo_product_sale_percent_shortc
 add_shortcode( 'get_product_sale_banner',	 'get_woo_product_sale_banner_shortcode'  ); 
 add_shortcode( 'get_product_price_info',	 'get_woo_product_price_info_shortcode'  ); 
 
-/*
-vuoden
-[get_product_price_info id="7323"]
-[get_product_price_info id="7324"]
-[get_product_price_info id="7327"]
-[get_product_price_info id="7328"]
-
-[get_product_price_info id="7329"]
-[get_product_price_info id="7330"]
-[get_product_price_info id="7331"]
-
-5vuoden
-[get_product_price_info id="7333"]
-[get_product_price_info id="7334"]
-[get_product_price_info id="7335"]
-[get_product_price_info id="7336"]
-[get_product_price_info id="7337"]
-[get_product_price_info id="7338"]
-[get_product_price_info id="7339"]
-*/
-
-
-
 //add_action( 'wp', 'update_hourly_post_type_update_info');
 //function update_hourly_post_type_update_info()
 //{       // Make sure this event hasn't been scheduled
