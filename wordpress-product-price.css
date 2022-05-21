@@ -1,44 +1,62 @@
 
+.saletable .saletabletr .saletabletd {
+	border: 0px;
+}
+
+.saletabletrheader .saletabletrfooter .saletabletdheader .saletabletdfooter {
+	border: 0px;
+}
+
 .header_td {
 	border: 0px;
-	font-size:1.5em;
-	text-align: justify;
+	font-size:1em;
+	text-align: center;
 }
 
 .footer_td {
 	border: 0px;
-	font-size:0.4em;
+	font-size:0.6em;
 	text-align: center;
+}
+
+
+.sale_price_td {
+	border: 0px;
+	font-size:1.9em;
+	text-align: right;
+}
+
+.sale_percent_td {
+	border: 0px;
+	vertical-align: text-top;
+	text-align: left;
+	font-size:0.3em;
 }
 
 .product_title {
 	border: 0px;
-	font-size:0.5em;
+	font-size:0.7em;
 	
 }
 
 .product_title_add {
 	border: 0px;
-	font-size:0.52em;
 }
 
 .sale_percent {
-	font-size:1em;
-	color:purple;
+	font-size:2em;
+	color:#aaFFaa;
 }
 
 .sale_banner {
-	font-size:0.8em;
-	color:yellow;
-}
-
-.sale_price_td {
-	font-size:1.5em;
-	text-align: right;
+	font-size:1.55em;
+	color:green;
 }
 
 .sale_price {
+	font-size:1em;
 	color:lightgreen;
+	text-shadow: 2px 2px 5px black;
 }
 
 .sale_till {
@@ -46,7 +64,7 @@
 }
 
 .sale_to_date {
-	color:lightblue;
+	color:blue;
 }
 
 .sale_valid {
@@ -54,24 +72,35 @@
 	
 }
 
-/* */
-.norm_price_td {
-	border: 0px;
-	font-size:0.3em;
-	color:gray;
-}
-
 .norm_price_strike {
-	font-size:0.3em;
-	color:gray;
+	font-size:0.8em;
+	color:lightgray;
 	text-decoration: line-through;
 	text-shadow: 3px 3px 8px black;
 }
 
-.norm_price {
-	font-size:0.3em;
+.norm_price_prefix
+{
+	font-size:0.5em;
 	color:lightgray;
 	text-shadow: 2px 2px 5px black;
-	text-align: right;
+}
+
+.norm_price {
+	font-size:1.9em;
+	color:green;
+	text-shadow: 2px 2px 5px black;
+}
+
+.norm_price_on_sale_td
+{
+	border: 0px;
+	color:lightgray;
+	text-align: left;	
+}
+
+.norm_price_td {
+	border: 0px;
+	text-align: center;
 }
 
