@@ -1,108 +1,77 @@
 
-.saletable .saletabletr .saletabletd {
-	border: 0px;
-}
-
-.saletabletrheader .saletabletrfooter .saletabletdheader .saletabletdfooter {
-	border: 0px;
-}
-
 .header_td {
 	border: 0px;
-	font-family: MuseoModerno;
-	font-size:0.48em;
-	color:lightgreen;
-	text-align: center;
+	font-size:1.5em;
+	text-align: justify;
 }
 
 .footer_td {
 	border: 0px;
-	font-family: MuseoModerno;
-	font-size:0.2em;
-	text-shadow: 2px 2px 5px black;
+	font-size:0.4em;
 	text-align: center;
-}
-
-/* */
-.price_td {
-	border: 0px;
-	text-align: left;
-	text-shadow: 2px 2px 5px black;
-}
-
-.sale_price_td {
-	border: 0px;
-	text-align: right;
-	
-}
-.sale_percent_td {
-	border: 0px;
-	text-align: right;
-	font-family: MuseoModerno;
-	font-size:0.2em;
 }
 
 .product_title {
 	border: 0px;
-	font-family: MuseoModerno;
+	font-size:0.5em;
 	
 }
 
 .product_title_add {
 	border: 0px;
-	font-family: MuseoModerno;
+	font-size:0.52em;
 }
 
 .sale_percent {
-	font-family: MuseoModerno;
-	font-size:1.5em;
-	color:lightgreen;
+	font-size:1em;
+	color:purple;
 }
 
 .sale_banner {
-	font-family: MuseoModerno;
-	font-size:1.55em;
-	color:green;
+	font-size:0.8em;
+	color:yellow;
+}
+
+.sale_price_td {
+	font-size:1.5em;
+	text-align: right;
 }
 
 .sale_price {
-	font-family: Ultra;
-	font-size:1em;
 	color:lightgreen;
 }
 
 .sale_till {
-	font-family: Ultra;
-	font-size:2em;
-	color:lightgreen;
+	color:blue;
 }
 
 .sale_to_date {
-	font-family: Ultra;
-	font-size:1em;
-	color:lightgreen;
-	text-shadow: 2px 2px 5px black;
+	color:lightblue;
 }
 
 .sale_valid {
-	font-family: Ultra;
-	font-size:1em;
-	color:lightgreen;
+	color:blue;
 	
 }
 
+/* */
+.norm_price_td {
+	border: 0px;
+	font-size:0.3em;
+	color:gray;
+}
+
 .norm_price_strike {
-	font-family: Ultra;
-	font-size:0.8em;
-	color:lightgray;
+	font-size:0.3em;
+	color:gray;
 	text-decoration: line-through;
-	text-shadow: 2px 2px 5px black;
+	text-shadow: 3px 3px 8px black;
 }
 
 .norm_price {
-	font-family: Ultra;
-	font-size:0.35em;
+	font-size:0.3em;
 	color:lightgray;
 	text-shadow: 2px 2px 5px black;
+	text-align: right;
 }
 

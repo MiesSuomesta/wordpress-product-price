@@ -174,13 +174,13 @@ function on_sale_decorate($given_info, $element)
 	$footer_html = mk_footer_html($given_info, $element);
 
 	$rv = '<table class="saletable">
-		<tr class="saletabletrheader" ><td class="header_td" colspan="3">'. $header_html .'</td></tr>
-		<tr class="saletabletr" >
-			<td class="sale_price_td" rowspan="2">'. $sale_price_html .'</td>
-			<td class="sale_percent_td">' . $sale_percent_html .'&nbsp;'. $sale_banner_html . '</td>
+		<tr ><td class="header_td" colspan="4">'. $header_html .'</td></tr>
+		<tr>
+			<td  class="sale_price_td" rowspan="2">'. $sale_price_html .'</td>
+			<td>' . $sale_percent_html .'&nbsp;'. $sale_banner_html . '</td>
 		</tr>
-		<tr class="saletabletr" ><td class="price_td">'. $price_html .'</td></tr>
-		<tr class="saletabletrfooter" ><td class="footer_td" colspan="3">'. $footer_html .'</td></tr>
+		<tr><td><span class="norm_price_td">Norm.</span> '. $price_html .'</td></tr>
+		<tr><td class="footer_td" colspan="4">'. $footer_html .'</td></tr>
 		</table>';
 	
 	return $rv;
@@ -207,13 +207,13 @@ function not_on_sale_decorate($given_info, $element)
 	$footer_html = mk_footer_html($given_info, $element);
 
 	$rv = '<table class="saletable">
-		<tr class="saletabletrheader" ><td class="header_td" colspan="3">'. $header_html .'</td></tr>
-		<tr class="saletabletr" >
-			<td class="sale_price_td" rowspan="2">'. $sale_price_html .'</td>
-			<td class="sale_percent_td">' . $sale_percent_html .'&nbsp;'. $sale_banner_html . '</td>
+		<tr ><td class="header_td" colspan="4">'. $header_html .'</td></tr>
+		<tr>
+			<td  class="sale_price_td" rowspan="2">'. $sale_price_html .'</td>
+			<td>' . $sale_percent_html .'&nbsp;'. $sale_banner_html . '</td>
 		</tr>
-		<tr class="saletabletr" ><td class="price_td">'. $price_html .'</td></tr>
-		<tr class="saletabletrfooter" ><td class="footer_td" colspan="3">'. $footer_html .'</td></tr>
+		<tr><td><span class="norm_price_td">Norm.</span> '. $price_html .'</td></tr>
+		<tr><td class="footer_td" colspan="4">'. $footer_html .'</td></tr>
 		</table>';
 	
 	return $rv;
